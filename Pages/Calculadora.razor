@@ -1,0 +1,42 @@
+﻿@page "/Calculadora"
+
+
+<h1>Calculadora</h1>
+
+
+<input type="number" @bind="num1" placeholder="Número 1" />
+<select @bind="operacion">
+    <option value="+">Suma</option>
+    <option value="-">Resta</option>
+    <option value="*">Multiplicación</option>
+    <option value="/">División</option>
+</select>
+<input type="number" @bind="num2" placeholder="Número 2" />
+<button @onclick="Calcular">Calcular</button>
+<p>Resultado: @resultado</p>
+
+@code {
+    private double num1;
+    private double num2;
+    private string operacion = "+";
+    private double resultado;
+
+    private void Calcular()
+    {
+        switch (operacion)
+        {
+            case "+":
+                resultado = num1 + num2;
+                break;
+            case "-":
+                resultado = num1 - num2;
+                break;
+            case "*":
+                resultado = num1 * num2;
+                break;
+            case "/":
+                resultado = num2 != 0 ? num1 / num2 : double.NaN;
+                break;
+        }
+    }
+}
